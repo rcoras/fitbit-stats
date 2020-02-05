@@ -68,7 +68,9 @@ const onStartGame = function (event) {
   const randomIndex = Math.floor(Math.random() * (49 - 0)) + 0;
   let stateToGuess = states[randomIndex]
   console.log(stateToGuess)
-  $('#gameMessage').text('what is the capital of', stateToGuess,'?')
+  $('#gameMessage').text('Guess the capital of', stateToGuess,'?')
+  console.log('tried to update game message')
+  $('.form').show
 }
 
 
