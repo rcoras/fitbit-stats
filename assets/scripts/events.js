@@ -67,6 +67,7 @@ const onStartGame = function (event) {
   const states = Object.keys(statesObj)
   const randomIndex = Math.floor(Math.random() * (49 - 0)) + 0;
   let stateToGuess = states[randomIndex]
+  console.log(stateToGuess)
 }
 
 
