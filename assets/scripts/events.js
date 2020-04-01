@@ -56,6 +56,8 @@ const statesObj = {
   'Wyoming': 'Cheyenne'
 }
 
+let stateGuessed = ''
+
 function guessCapital(state){
   $('#gameMessage').text('what is the capital of',state,'?')
   console.log('what is the capital of',state,'?')
@@ -75,12 +77,33 @@ const onStartGame = function (event) {
   let stateToGuess = states[randomIndex]
   console.log(stateToGuess)
   $('#gameMessage').html('What\'s the capital of ').append(stateToGuess, "?")
-  console.log('tried to update game message')
+  stateGuessed = stateToGuess
+  $("#WinOrLoseMessage").html('')
+}
+
+const onSumbitAnswer = function (event) {
+  event.preventDefault()
+  $('.answer-box').hide()
+  this.reset()
+  const form = event.currentTarget
+  const data = getFormFields(form)
+  // const data = getFormFields(event.currentTarget.elements)
+  let addedAnswer = data.answer
+  // addedAnswer = addedAnswer.toLowerCase()
+  if (addedAnswer.toLowerCase() === statesObj[stateGuessed].toLowerCase()) {
+    $("#WinOrLoseMessage").html('You got it!')
+  } else {
+    $("#WinOrLoseMessage").html('Nope, the answer is ').append(statesObj[stateGuessed])
+  }
+  stateGuessed = ''
 }
 
 
 const addHandlers = function () {
+  // document.addEventListener('click', onStartGame)
   $('#start-game-button').on('click', onStartGame)
+  // document.addEventListener('submit', onSumbitAnswer)
+  $('.answer-box').on('submit', onSumbitAnswer)
 }
 
 module.exports = {
