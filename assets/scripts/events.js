@@ -84,18 +84,20 @@ const onStartGame = function (event) {
 const onSumbitAnswer = function (event) {
   event.preventDefault()
   $('.answer-box').hide()
-  this.reset()
   const form = event.currentTarget
   const data = getFormFields(form)
+  console.log(data)
+  console.log(data.answer)
   // const data = getFormFields(event.currentTarget.elements)
-  let addedAnswer = data.answer
-  // addedAnswer = addedAnswer.toLowerCase()
+  const addedAnswer = data.answer
+  console.log('this is added answer', addedAnswer)
   if (addedAnswer.toLowerCase() === statesObj[stateGuessed].toLowerCase()) {
-    $("#WinOrLoseMessage").html('You got it!')
+    $('#WinOrLoseMessage').html('You got it!')
   } else {
-    $("#WinOrLoseMessage").html('Nope, the answer is ').append(statesObj[stateGuessed])
+    $('#WinOrLoseMessage').html('Nope, the answer is ').append(statesObj[stateGuessed])
   }
   stateGuessed = ''
+  this.reset()
 }
 
 
